@@ -1,8 +1,13 @@
 class Player
+  @@colours = ['r', 'g', 'b', 'y', 'c', 'p']
+
   attr_reader :role
 
-  def initialize (name, role)
-    @name = name
+  def initialize (role)
     @role = role
+  end
+
+  def self.colours
+    @@colours
   end
 end
