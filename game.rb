@@ -15,4 +15,8 @@ class Game
     @code = @code_setter.set_code
     @code_breaker.break_code
   end
+
+  private
+  def check_code(code_attempt)
+  end
 end

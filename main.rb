@@ -1,13 +1,15 @@
+require_relative 'colours'
 require_relative 'player'
 require_relative 'human_player'
 require_relative 'computer_player'
 require_relative 'game'
+require_relative 'code'
 
 def select_game_type
   system("clear")
-  puts "MASTERMIND".center(30)
+  puts "MASTERMIND".center(30).cyan
   puts
-  puts "Please select from the below:"
+  puts "Please select from the below:".green
   puts
   puts "1. Play as the code breaker"
   puts "2. Play as the code setter"
