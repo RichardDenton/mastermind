@@ -5,6 +5,10 @@ class Code
 
   def initialize(code_array)
     @code_array = code_array
+    @colour_occurances = @code_array.reduce(Hash.new(0)) do |occurances, colour|
+      occurances[colour] += 1
+      occurances
+    end
   end
 
   def to_s
@@ -18,6 +22,10 @@ class Code
 
   def code_cracked?(code_guess)
     code_guess.code_array == @code_array
+  end
+
+  def get_hints(guess)
+    @colour_occurances
   end
 
   def self.colours
