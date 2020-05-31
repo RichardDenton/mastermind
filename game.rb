@@ -1,5 +1,4 @@
 class Game
-  
   def initialize(player)
     case player.role
     when "breaker"
@@ -13,10 +12,7 @@ class Game
 
   def play
     @code = @code_setter.set_code
-    @code_breaker.break_code
+    @code_breaker.break_code(@code)
   end
 
-  private
-  def check_code(code_attempt)
-  end
 end

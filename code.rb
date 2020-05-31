@@ -1,8 +1,23 @@
 class Code
+  attr_reader :code_array
+
   @@colours = ['red', 'green', 'blue', 'magenta', 'cyan', 'brown']
 
   def initialize(code_array)
     @code_array = code_array
+  end
+
+  def to_s
+    code = ''
+    @code_array.each do |colour|
+      bg_colour = 'bg_' + colour
+      code += '    '.send(bg_colour.to_sym)
+    end
+    code
+  end
+
+  def code_cracked?(code_guess)
+    code_guess.code_array == @code_array
   end
 
   def self.colours
@@ -37,12 +52,4 @@ class Code
     valid
   end
 
-  def to_s
-    code = ''
-    @code_array.each do |colour|
-      bg_colour = 'bg_' + colour
-      code += '    '.send(bg_colour.to_sym)
-    end
-    code
-  end
 end

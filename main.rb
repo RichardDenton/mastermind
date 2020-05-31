@@ -17,6 +17,7 @@ def select_game_type
 
   choice = nil
   until choice == "1" || choice == "2" do
+    print ": "
     choice = gets.chomp
     puts "Please enter 1 or 2" unless choice == '1' || choice == '2'
   end
