@@ -25,7 +25,36 @@ class Code
   end
 
   def get_hints(guess)
-    @colour_occurances
+    # find colours in the correct position
+    correct_positions = 0
+    guess_colour_occurances = {}
+    guess.code_array.each_with_index do |colour, index|
+      if colour == @code_array[index]
+        correct_positions += 1
+        if guess_colour_occurances.has_key?(colour)
+          guess_colour_occurances[colour] += 1
+        else
+          guess_colour_occurances[colour] = 1
+        end
+      end
+    end
+    
+    # find colours not in the correct place
+    incorrect_positions = 0
+    guess.code_array.each do |colour|
+      if @code_array.include?(colour)
+        if guess_colour_occurances.has_key?(colour) && guess_colour_occurances[colour] < @colour_occurances[colour]
+          incorrect_positions += 1
+          guess_colour_occurances[colour] += 1
+        elsif !guess_colour_occurances.has_key?(colour)
+          incorrect_positions += 1
+          guess_colour_occurances[colour] = 1
+        end
+      end
+    end
+
+    puts correct_positions
+    puts incorrect_positions
   end
 
   def self.colours

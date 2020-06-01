@@ -4,6 +4,7 @@ require_relative 'human_player'
 require_relative 'computer_player'
 require_relative 'game'
 require_relative 'code'
+require_relative 'hint'
 
 def select_game_type
   system("clear")
