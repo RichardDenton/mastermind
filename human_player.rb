@@ -13,6 +13,7 @@ class Human_Player < Player
     end
 
     if hints
+      puts "\nHere are your hints:"
       puts hints
     end
     
@@ -29,5 +30,15 @@ class Human_Player < Player
       
     puts "\nyour guess is:"
     Code.new(guess_array)
+  end
+
+  def end_attempt(code_broken, code)
+    puts
+    if code_broken
+      puts "Congratulations you broke the code!"
+    else
+      puts "You have used all of your attempts. Better look next time, the code was:"
+      puts code
+    end
   end
 end

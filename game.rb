@@ -17,8 +17,6 @@ class Game
     guesses = 0
     code_broken = false
 
-    puts @code
-
     until guesses == 12 || code_broken do
       guess = @code_breaker.get_guess(guesses, hints)
       puts guess
@@ -26,5 +24,7 @@ class Game
       guesses += 1
       hints = @code.get_hints(guess)
     end
+
+    @code_breaker.end_attempt(code_broken, @code)
   end
 end
