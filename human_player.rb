@@ -13,8 +13,8 @@ class Human_Player < Player
     end
 
     if hints
-      puts "\nHere are your hints:"
-      puts hints
+      # puts "\nHere are your hints:"
+      puts " #{hints}"
     end
     
     puts "\nEnter each colour separated by a space"

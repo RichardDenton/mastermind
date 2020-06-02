@@ -18,7 +18,7 @@ class Game
 
     until guesses == 12 || code_broken do
       guess = @code_breaker.get_guess(guesses, hints)
-      puts guess
+      print guess
       code_broken = @code.code_cracked?(guess)
       guesses += 1
       hints = @code.get_hints(guess)

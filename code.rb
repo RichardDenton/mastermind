@@ -1,7 +1,7 @@
 class Code
   attr_reader :code_array, :colour_occurances
 
-  @@colours = ['red', 'green', 'blue', 'magenta', 'cyan', 'brown']
+  @@colours = ['white', 'red', 'green', 'blue', 'magenta', 'cyan']
 
   def initialize(code_array)
     @code_array = code_array
