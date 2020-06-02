@@ -27,14 +27,20 @@ class Code
   def get_hints(guess)
     correct_positions = 0
     incorrect_positions = 0
+    colour_counter = Hash.new(0)
 
+    # find number of colours in the correct position
     guess.code_array.each_with_index do |colour, index|
-      # find number of colours in the correct position
       if colour == @code_array[index]
         correct_positions += 1
-      # find number of colours in incorrect position
-      elsif @code_array.include?(colour) && guess.colour_occurances[colour] < @colour_occurances[colour]
+        colour_counter[colour] += 1
+      end
+    end
+    # find number of colours in incorrect position
+    guess.code_array.each_with_index do |colour, index|  
+      if @code_array.include?(colour) && colour_counter[colour] < @colour_occurances[colour]
         incorrect_positions += 1
+        colour_counter[colour] += 1
       end
     end
 
