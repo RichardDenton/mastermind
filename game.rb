@@ -24,7 +24,7 @@ class Game
       hints = @code.get_hints(guess)
     end
 
-    puts hints
+    puts " #{hints}"
     @code_breaker.end_attempt(code_broken, @code)
   end
 end

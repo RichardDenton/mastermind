@@ -13,10 +13,8 @@ class Human_Player < Player
 
   def get_guess(guesses, hints)
     if guesses == 0
-      puts
       puts "Make a guess at the code, the possible colours are:"
       puts Code.possible_colours
-      puts
     end
 
     if hints
@@ -65,7 +63,7 @@ class Human_Player < Player
     if code_broken
       puts "Congratulations you broke the code!"
     else
-      puts "You have used all of your attempts. Better look next time, the code was:"
+      puts "You have used all of your attempts.\nBetter look next time! The code was:"
       puts code
     end
   end
