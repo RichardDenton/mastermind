@@ -1,7 +1,14 @@
 class Human_Player < Player
+  @@colour_conversion = {'w' => 'white', 'r' => 'red', 'g' => 'green', 'b' => 'blue', 'm' => 'magenta', 'c' => 'cyan'}
 
   def set_code
-    nil
+    puts "Please enter your secret code, the available colours are:"
+    puts Code.possible_colours
+    print "\nCode: "
+    code = get_code
+    puts "\nYou have set the code"
+    puts code
+    code
   end
 
   def get_guess(guesses, hints)
@@ -17,22 +24,43 @@ class Human_Player < Player
       puts " #{hints}"
     end
     
-    puts "\nEnter each colour separated by a space"
-    print "guess #{guesses + 1}: "
-      
-    valid_guess = false
-    until valid_guess do
-      guess = gets.chomp
-      guess_array = guess.split(' ')
-      guess_array.length != 4 ? valid_guess = false : valid_guess = Code.is_valid?(guess_array)
-      print "\nPlease enter four valid colours separated by spaces\nguess #{guesses + 1}: " unless valid_guess  
-    end
-      
+    puts "\nEnter the first letter of each colour eg: rgbc"
+    print "Guess #{guesses + 1}: "
+    guess = get_code
     puts "\nyour guess is:"
-    Code.new(guess_array)
+    guess
   end
 
-  def end_attempt(code_broken, code)
+  def get_code
+    valid_code = false
+    until valid_code do
+      entered_code = gets.chomp.downcase
+      entered_code_array = entered_code.split('')
+      entered_code_array.length != 4 ? valid_code = false : valid_code = valid_colours?(entered_code_array)
+      print "\nPlease enter four valid colours in the format rgbc\n: " unless valid_code  
+    end
+
+    converted_code_array = convert_colours(entered_code_array)
+    Code.new(converted_code_array)
+  end
+
+  def valid_colours?(letters)
+    valid_guess = true
+    letters.each do |letter|
+      valid_guess = false if !@@colour_conversion.has_key?(letter)
+    end
+    valid_guess
+  end
+
+  def convert_colours(letter_array)
+    converted_colours = []
+    letter_array.each do |letter|
+      converted_colours.push(@@colour_conversion[letter])
+    end
+    converted_colours
+  end
+  
+    def end_attempt(code_broken, code)
     puts
     if code_broken
       puts "Congratulations you broke the code!"
@@ -40,5 +68,9 @@ class Human_Player < Player
       puts "You have used all of your attempts. Better look next time, the code was:"
       puts code
     end
+  end
+
+  def self.colour_conversion
+    @@colour_conversion
   end
 end

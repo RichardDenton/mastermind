@@ -53,9 +53,8 @@ class Code
 
   def self.possible_colours
     # Returns a coloured string representation of the possible colours
-
     colour_string = ''
-    colour_array = @@colours
+    colour_array = @@colours.dup
     colour_array.insert(-2, "and ")
 
     colour_array.each do |colour|
