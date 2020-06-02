@@ -28,30 +28,23 @@ class Code
     indices_of_correct_positions = []
     correct_positions = 0
     incorrect_positions = 0
-    guess_colour_occurances = {}
+    guess_colour_occurances = Hash.new(0)
 
     # find colours in the correct position
     guess.code_array.each_with_index do |colour, index|
       if colour == @code_array[index]
         correct_positions += 1
         indices_of_correct_positions.push(index)
-        if guess_colour_occurances.has_key?(colour)
-          guess_colour_occurances[colour] += 1
-        else
-          guess_colour_occurances[colour] = 1
-        end
+        guess_colour_occurances[colour] += 1
       end
     end
     
     # find colours not in the correct place
     guess.code_array.each_with_index do |colour, index|
       if @code_array.include?(colour) && !indices_of_correct_positions.include?(index) 
-        if guess_colour_occurances.has_key?(colour) && guess_colour_occurances[colour] < @colour_occurances[colour]
+        if guess_colour_occurances[colour] < @colour_occurances[colour]
           incorrect_positions += 1
           guess_colour_occurances[colour] += 1
-        elsif !guess_colour_occurances.has_key?(colour)
-          incorrect_positions += 1
-          guess_colour_occurances[colour] = 1
         end
       end
     end
