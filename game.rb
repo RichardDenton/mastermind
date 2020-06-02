@@ -12,7 +12,7 @@ class Game
 
   def play
     @code = @code_setter.set_code
-
+    puts @code
     hints = nil
     guesses = 0
     code_broken = false
