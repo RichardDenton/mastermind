@@ -25,7 +25,7 @@ class Human_Player < Player
     puts "\nEnter the first letter of each colour eg: rgbc"
     print "Guess #{guesses + 1}: "
     guess = get_code
-    puts "\nyour guess is:"
+    print "\nyour guess is: "
     guess
   end
 

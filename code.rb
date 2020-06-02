@@ -38,7 +38,7 @@ class Code
     end
     # find number of colours in incorrect position
     guess.code_array.each_with_index do |colour, index|  
-      if @code_array.include?(colour) && colour_counter[colour] < @colour_occurances[colour]
+      if @code_array.include?(colour) && colour_counter[colour] < @colour_occurances[colour] && colour_counter[colour] < guess.colour_occurances[colour]
         incorrect_positions += 1
         colour_counter[colour] += 1
       end
