@@ -25,7 +25,6 @@ class Code
   end
 
   def get_hints(guess)
-    indices_of_correct_positions = []
     correct_positions = 0
     incorrect_positions = 0
 
@@ -33,12 +32,9 @@ class Code
       # find number of colours in the correct position
       if colour == @code_array[index]
         correct_positions += 1
-        indices_of_correct_positions.push(index)
       # find number of colours in incorrect position
-      elsif @code_array.include?(colour) && !indices_of_correct_positions.include?(index) 
-        if guess.colour_occurances[colour] < @colour_occurances[colour]
-          incorrect_positions += 1
-        end
+      elsif @code_array.include?(colour) && guess.colour_occurances[colour] < @colour_occurances[colour]
+        incorrect_positions += 1
       end
     end
 
