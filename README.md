@@ -14,3 +14,5 @@ The codes are four colours long with the colours being chosen from six possible 
 ## Reflection
 This project was created to proactice using OOP principles. The main challenges were implementing Donald Knuth's algorithm 
 and creating an algorithm to generate the correct hints after each guess.
+
+[![Run on Repl.it](https://repl.it/badge/github/RichardDenton/mastermind)](https://repl.it/github/RichardDenton/mastermind)
