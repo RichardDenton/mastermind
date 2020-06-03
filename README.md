@@ -1,5 +1,5 @@
 # Mastermind
-A Ruby implementation of the game Mastermind [Wikipedia article](https://en.wikipedia.org/wiki/Mastermind_(board_game))
+A Ruby implementation of the game [Mastermind](https://en.wikipedia.org/wiki/Mastermind_(board_game))
 
 This was created as part of The Odin Project's [Curriculum](https://www.theodinproject.com/lessons/oop)
 
