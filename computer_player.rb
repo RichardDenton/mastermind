@@ -28,8 +28,8 @@ class Computer_Player < Player
     end
     
     puts " #{hints}" if hints
-    
     print_guess_number(guesses)
+    
     remove_possible_solutions(hints)
     if @possible_solutions.length == 1
       return Code.new(@possible_solutions[0])
@@ -81,6 +81,7 @@ class Computer_Player < Player
     else
       puts "The computer failed to break your code"
     end
+    play_again?
   end
 
 end

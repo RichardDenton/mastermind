@@ -4,6 +4,7 @@ class Human_Player < Player
   def set_code
     puts "Please enter your secret code, the available colours are:"
     puts Code.possible_colours
+    puts "\nEnter the first letter of each colour eg: rgbc"
     print "\nCode: "
     code = get_code
     puts "\nYou have set the code"
@@ -15,6 +16,10 @@ class Human_Player < Player
     if guesses == 0
       puts "Make a guess at the code, the possible colours are:"
       puts Code.possible_colours
+      puts "\nHints:".cyan
+      puts "You will receive hints after each guess, a coloured peg"
+      puts "means that a colour is in the right place, a white peg"
+      puts "means there is a correct colour in the wrong place."
     end
 
     if hints
@@ -66,6 +71,7 @@ class Human_Player < Player
       puts "You have used all of your attempts.\nBetter look next time! The code was:"
       puts code
     end
+    play_again?
   end
 
   def self.colour_conversion
