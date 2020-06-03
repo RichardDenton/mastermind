@@ -15,8 +15,8 @@ class Computer_Player < Player
       # Create two sets of all possible codes
       @possible_solutions = Code.colours.repeated_permutation(4).to_a
       
-      print "Guess #{guesses + 1}:  "
-      guess = Code.new(['red', 'red', 'green', 'green'])
+      print_guess_number(guesses)
+      guess = Code.new(['white', 'white', 'red', 'red'])
 
       # Delete the guess from the possible solutions and duplicate the array
       # to create an array of all unused codes
@@ -28,14 +28,50 @@ class Computer_Player < Player
     end
     
     puts " #{hints}" if hints
-    @possible_solutions.each do |solution|
-      possible_solution_hint = Code.new(solution).get_hints(@last_guess)
-      unless possible_solution_hint.correct_positions == hints.correct_positions && possible_solution_hint.incorrect_positions == hints.incorrect_positions
-        @possible_solutions.delete(solution)
-      end
+    
+    print_guess_number(guesses)
+    remove_possible_solutions(hints)
+    if @possible_solutions.length == 1
+      return Code.new(@possible_solutions[0])
     end
-    puts @possible_solutions.length
 
+    guess = find_best_guess
+    @unused_codes.delete(guess.code_array)
+    @possible_solutions.delete(guess.code_array)
+    @last_guess = guess
+    guess
+  end
+
+  def remove_possible_solutions(hints)
+    # Remove any possible solutions that give different hints for the previous guess
+    @possible_solutions.delete_if do |solution|
+      possible_solution_hint = Code.new(solution).get_hints(@last_guess)
+      possible_solution_hint.correct_positions != hints.correct_positions || possible_solution_hint.incorrect_positions != hints.incorrect_positions
+    end
+  end
+
+  def find_best_guess
+    # Use minmax find the guess whose minumum number of eliminated possible solutions is the highest  
+    eliminations = {}
+    @unused_codes.each do |unused_code|
+      elimination_count = Hash.new(0)
+      @possible_solutions.each do |solution|
+        test_hint = Code.new(solution).get_hints(Code.new(unused_code))
+        hint_array = [test_hint.correct_positions, test_hint.incorrect_positions]
+        elimination_count[hint_array] += 1
+      end
+      lowest_possible_eliminations = @possible_solutions.length - elimination_count.max_by{|k, v| v}[1]
+      eliminations[unused_code] = lowest_possible_eliminations
+    end
+    Code.new(eliminations.max_by{|k, v| v}[0])
+  end
+
+  def print_guess_number(guesses)
+    if (guesses + 1).to_s.length < 2
+      print "Guess #{guesses + 1}:  "
+    else
+      print "Guess #{guesses + 1}: "
+    end
   end
 
   def end_attempt(code_broken, code)
