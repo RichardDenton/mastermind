@@ -20,14 +20,12 @@ class Human_Player < Player
       puts "You will receive hints after each guess, a coloured peg"
       puts "means that a colour is in the right place, a white peg"
       puts "means there is a correct colour in the wrong place."
+      puts "\nEnter the first letter of each colour eg: rgbc"
     end
 
-    if hints
-      # puts "\nHere are your hints:"
-      puts " #{hints}"
-    end
+    puts " #{hints}" if hints
     
-    puts "\nEnter the first letter of each colour eg: rgbc"
+    # puts "\nEnter the first letter of each colour eg: rgbc"
     print "Guess #{guesses + 1}: "
     guess = get_code
     print "\nyour guess is: "
