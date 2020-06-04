@@ -16,7 +16,7 @@ class Computer_Player < Player
       @possible_solutions = Code.colours.repeated_permutation(4).to_a
       
       print_guess_number(guesses)
-      guess = Code.new(['white', 'white', 'red', 'red'])
+      guess = get_first_guess
 
       # Delete the guess from the possible solutions and duplicate the array
       # to create an array of all unused codes
@@ -42,6 +42,17 @@ class Computer_Player < Player
     guess
   end
 
+  def get_first_guess
+    # Generates a random first guess for the computer that consists of two repeated colours
+    # eg 'red red white white'
+    possible_first_guesses = Code.colours.repeated_combination(4).to_a
+    possible_first_guesses.delete_if do |guess|
+      guess[0] != guess[1] || guess[2] != guess[3] || guess[0] == guess[2]
+    end
+    
+    Code.new(possible_first_guesses.sample(1)[0])
+  end
+  
   def remove_possible_solutions(hints)
     # Remove any possible solutions that give different hints for the previous guess
     @possible_solutions.delete_if do |solution|
