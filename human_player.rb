@@ -37,7 +37,7 @@ class Human_Player < Player
       entered_code = gets.chomp.downcase
       entered_code_array = entered_code.split('')
       entered_code_array.length != 4 ? valid_code = false : valid_code = valid_colours?(entered_code_array)
-      print "\nPlease enter four valid colours in the format rgbc\n: " unless valid_code  
+      print "\nPlease enter four valid colours in the format #{'r'.red + 'g'.green + 'b'.blue + 'c'.cyan}\n: " unless valid_code  
     end
 
     converted_code_array = convert_colours(entered_code_array)
